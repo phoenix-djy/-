@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--bootstrap的css样式-->
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <!--bootstrap与jqgrid整合的css样式-->
+    <link rel="stylesheet" href="bootstrap-jqgrid/css/trirand/ui.jqgrid-bootstrap.css">
+    <!--jqurey的js文件-->
+    <script src="bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+    <!--bootstrap的js文件-->
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <!--bootstrap与jqgrid整合的国际化的js文件-->
+    <script src="bootstrap-jqgrid/js/trirand/i18n/grid.locale-cn.js"></script>
+    <!--jqgrid与bootstrap整合的js文件-->
+    <script src="bootstrap-jqgrid/js/trirand/jquery.jqGrid.min.js"></script>
+
+    <script type="application/javascript">
+        $(function () {
+           $("#table").jqGrid({
+            styleUI:"Bootstrap",//开启bootstrap的样式
+            url:"users.json", //获取的数据的路径
+            datatype:"json",  //自动把后台响应回的json协议串装换为jquery中的对象
+            cellEdit:true,  //开启全局可编辑
+            pager:"#jqgrid",//开启分页
+            rowNum:"5", //每页展示的条数
+            rowList:[3,5,8], // 可选的每页展示的条数
+            viewrecords:true, //展示总条数
+            caption:"123", //表格名称
+             autowidth:true, // 表格自适应
+            colNames:["id","用户名","密码","年龄","性别"],
+            colModel:
+                [
+            {name:"id"},
+            {name:"username"},
+            {name:"password",editable:true},
+            {name:"age",formatter:function (cellvalue,options,rowObjects) {
+                    if (cellvalue<18) {
+                        return "青年"
+
+                    }else if(cellvalue<=18&&cellvalue<40){
+                        return "壮年"
+                    }else if (cellvalue<=40&&cellvalue<80){
+                        return "老年"
+                    }
+
+                }},
+            {name:"sex",editable:true,edittype:"select",editoptions:{value:"1:男;2:女"}}
+
+                ]
+
+
+           });
+        });
+        
+    </script>
+
+</head>
+<body>
+
+
+
+<table id="table"></table>
+<div id="jqgrid"></div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+[
+  {
+    "id":"2",
+    "username":"小白",
+    "password":"123456",
+    "age":"2",
+    "sex":"男"
+  },
+  {
+    "id":"3",
+    "username":"小黑",
+    "password":"123456",
+    "age":"15",
+    "sex":"女"
+  },
+  {
+    "id":"4",
+    "username":"小网",
+    "password":"123456",
+    "age":"42",
+    "sex":"男"
+  },
+  {
+    "id":"5",
+    "username":"小任",
+    "password":"123456",
+    "age":"33",
+    "sex":"女"
+  },
+  {
+    "id":"6",
+    "username":"小杜",
+    "password":"123456",
+    "age":"24",
+    "sex":"男"
+  },
+  {
+    "id":"1",
+    "username":"小蓝",
+    "password":"123456",
+    "age":"11",
+    "sex":"女"
+
+  }
+
+]

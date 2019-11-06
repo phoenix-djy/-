@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baizhi.dao.EmployeeDAO">
+    <resultMap id="employeeMap" type="Employees">
+        <id column="empid" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="age" property="age"></result>
+    <association property="department" javaType="Department">
+        <id column="deptid" property="id"></id>
+        <result column="deptname" property="deptname"></result>
+    </association>
+    </resultMap>
+  <select id="selectEmployees" resultMap="employeeMap">
+      select e.id empid,e.username,e.password,e.age,
+      d.id deptid,d.deptname from user e left join department
+      d on e.departid=d.id limit #{s},#{rows}
+  </select>
+    <select id="selectRecords" resultType="Integer">
+        select count(*) from user
+    </select>
+    <insert id="save">
+        insert into user (id,username,password,age,departid)values (#{id} , #{username},#{password},#{age},#{department.id})
+
+
+    </insert>
+    <update id="update">
+        update user
+        <set>
+            <if test="username!=null">
+                username=#{username},
+            </if>
+            <if test="password!=null">
+                password=#{password},
+            </if>
+            <if test="age!=null">
+                age=#{age},
+            </if>
+            <if test="department.id!=null">
+                departid=#{department.id}
+            </if>
+        </set>
+          where id=#{id}
+
+    </update>
+
+</mapper>
